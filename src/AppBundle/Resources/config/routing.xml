@@ -19,4 +19,12 @@
     <route id="laliga_players_delete" path="/players/{id}/delete">
         <default key="_controller">AppBundle:Player:delete</default>
     </route>
+
+    <route id="laliga_club_new" path="/club/new">
+        <default key="_controller">AppBundle:Club:new</default>
+    </route>
+
+    <route id="laliga_club_list" path="/club">
+        <default key="_controller">AppBundle:Club:list</default>
+    </route>
 </routes>

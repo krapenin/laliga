@@ -1,0 +1,14 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{{ form_start(form) }}
+<div class="form-group">
+    {{ form_row(form.id) }}
+    <div class="col-md-6">
+        {{ form_row(form.name) }}
+    </div>
+</div>
+<div class="form-actions col-md-12 text-right margin-top-25">
+    <a class="btn btn-danger form-cancel-edit" href="{{ path('laliga_players') }}">Cancelar</a>
+    <button type="submit" name="submit_player" class="btn btn-success btn"><i class="hide fa fa-spinner fa-spin"></i><span>Guardar</span></button>
+</div>
+{{ form_end(form) }}

@@ -1,14 +1,31 @@
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% extends "base.html.twig" %}
 
-{{ form_start(form) }}
-<div class="form-group">
-    {{ form_row(form.id) }}
-    <div class="col-md-6">
-        {{ form_row(form.name) }}
+{% block body %}
+    <div class="container">
+        <div class="page bg-white animsition">
+            <div class="page-header">
+                {% if app.request.attributes.get('id') is not empty %}
+                    {% set title = 'Editar' %}
+                {%endif%}
+                <h1 class="page-title">{{ title|default('Nuevo') }} Jugador</h1>
+            </div>
+            <div class="page-content">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    <div class="col-md-6">
+                        {{ form_row(form.name) }}
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="form-actions col-md-12 text-right margin-top-25">
+                            <a class="btn btn-danger form-cancel-edit" href="{{ path('laliga_players') }}">Cancelar</a>
+                            <button type="submit" name="submit_player" class="btn btn-success btn"><i class="hide fa fa-spinner fa-spin"></i><span>Guardar</span></button>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
-</div>
-<div class="form-actions col-md-12 text-right margin-top-25">
-    <a class="btn btn-danger form-cancel-edit" href="{{ path('laliga_players') }}">Cancelar</a>
-    <button type="submit" name="submit_player" class="btn btn-success btn"><i class="hide fa fa-spinner fa-spin"></i><span>Guardar</span></button>
-</div>
-{{ form_end(form) }}
+{% endblock %}

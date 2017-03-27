@@ -7,4 +7,16 @@
     <route id="laliga_players" path="/players">
         <default key="_controller">AppBundle:Player:list</default>
     </route>
+
+    <route id="laliga_players_new" path="/players/new">
+        <default key="_controller">AppBundle:Player:new</default>
+    </route>
+
+    <route id="laliga_players_edit" path="/players/{id}/edit">
+        <default key="_controller">AppBundle:Player:edit</default>
+    </route>
+
+    <route id="laliga_players_delete" path="/players/{id}/delete">
+        <default key="_controller">AppBundle:Player:delete</default>
+    </route>
 </routes>

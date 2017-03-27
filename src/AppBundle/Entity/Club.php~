@@ -1,0 +1,33 @@
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * Club
+ */
+class Club
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $phone;
+
+    /**
+     * @var bool
+     */
+    private $isDeleted;
+
+
+    private $players;
+
+}

@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="{{ asset('assets/vendor/datatables/css/datatables.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset("assets/vendor/datatables/js/datatables.js") }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="page bg-white animsition">
+
+            <div class="page-header">
+                <h1 class="page-title">Clubs</h1>
+                <div class="page-header-actions">
+
+                    <div style="margin-top: 10px">
+                        <a href="{{ path('laliga_club_new') }}" class="new-btn btn btn-warning" type="button">
+                            <i aria-hidden="true" class="icon wb-plus"></i>
+                            Crear Club
+                        </a>
+                        <span> </span>
+                    </div>
+
+                </div>
+                {% include "flash_messages.html.twig" %}
+            </div>
+            <div class="page-content">
+                <table id="listing-table" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th width="5%">Id</th>
+                        <th width="30%">Nombre</th>
+                        <th width="10%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for club in clubs %}
+                        <tr>
+                            <td>{{ club.id }}</td>
+                            <td>{{ club.name }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+{% endblock %}

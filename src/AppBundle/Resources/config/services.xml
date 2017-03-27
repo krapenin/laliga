@@ -6,6 +6,16 @@
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="logger"/>
         </service>
+
+        <service id="club.manager" class="AppBundle\Service\ClubManager">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="logger"/>
+        </service>
+
+        <service id="players_type.service" class="AppBundle\Form\Type\PlayersType">
+            <argument type="service" id="player.manager" />
+            <tag name="form.type" alias="playerSelect"/>
+        </service>
     </services>
 </container>
 

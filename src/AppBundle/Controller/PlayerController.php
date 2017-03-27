@@ -46,8 +46,6 @@ class PlayerController extends Controller
 
     public function editAction($id, Request $request)
     {
-
-
         $playerManager = $this->get('player.manager');
         $player = $playerManager->get($id);
 

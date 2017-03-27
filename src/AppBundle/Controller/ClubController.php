@@ -9,15 +9,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Club;
-use AppBundle\Entity\Player;
 use AppBundle\Form\ClubType;
-use AppBundle\Form\PlayerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class ClubController extends Controller
 {
-
     //TODO Refactorizar handler formulario
     public function newAction(Request $request)
     {

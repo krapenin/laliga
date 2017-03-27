@@ -1,0 +1,11 @@
+{% set flashbag = app.session.flashbag.all %}
+{% if flashbag is not empty %}
+    {% for type, flashMessage in flashbag %}
+        {% for message in flashMessage %}
+            <div class="alert alert-{{ type }}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}

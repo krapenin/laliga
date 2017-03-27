@@ -1,10 +1,77 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="{{ asset('assets/vendor/datatables/css/datatables.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset("assets/vendor/datatables/js/datatables.js") }}"></script>
+{% endblock %}
+
 {% block body %}
+    <div class="container">
+        <div class="page bg-white animsition">
 
-    <span>ID</span>
-    <span>Name</span>
-    {% for player in players   %}
-        <span>{{ player.id }}</span>
-        <span>{{ player.name }}</span>
-    {% endfor %}
+            <div class="page-header">
+                <h1 class="page-title">Jugadores</h1>
+                <div class="page-header-actions">
 
+                    <div style="margin-top: 10px">
+                        <a href="{{ path('laliga_players_new') }}" class="new-btn btn btn-warning" type="button">
+                            <i aria-hidden="true" class="icon wb-plus"></i>
+                            Crear Jugador
+                        </a>
+                        <span> </span>
+                    </div>
+
+                </div>
+                {% include "flash_messages.html.twig" %}
+            </div>
+            <div class="page-content">
+                <table id="listing-table" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th width="5%">Id</th>
+                        <th width="30%">Nombre</th>
+                        <th width="10%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for player in players %}
+                        <tr>
+                            <td>{{ player.id }}</td>
+                            <td>{{ player.name }}</td>
+
+                            <td align="center" valign="middle">
+                                <div class="btn-group">
+                                    <button type="button" class="action-btn btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="icon fa fa-cogs" aria-hidden="true"></i>
+                                        Acción
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li class="text-left">
+                                            <a class="btn" style="text-decoration: none;" class="edit" href="{{ path('laliga_players_edit', {'id': player.id}) }}">
+                                                <i class="icon fa fa-pencil" aria-hidden="true"></i>
+                                                Editar
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a class="btn delete" style="text-decoration: none;" href="{{ path('laliga_players_delete', {'id': player.id}) }}">
+                                                <i class="icon fa fa-trash" aria-hidden="true"></i>
+                                                Eliminar
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 {% endblock %}

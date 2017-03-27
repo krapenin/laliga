@@ -6,12 +6,13 @@
  * Time: 20:01
  */
 
-namespace AppBundle\Services;
+namespace AppBundle\Service;
 
 
+use AppBundle\Entity\Player;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\EntityManager;
 use Monolog\Logger;
+use Symfony\Component\Form\Test\FormInterface;
 
 class PlayerManager
 {
@@ -22,8 +23,44 @@ class PlayerManager
     public function __construct(ObjectManager $em, Logger $logger)
     {
         $this->em = $em;
-
     }
 
+    public function update(Player $player)
+    {
+        $this->em->persist($player);
+        $this->em->flush();
+    }
 
+    public function get($id = null)
+    {
+        if (!$id) {
+            return $this->getRepository()->findAll();
+        }
+
+        $player =  $this->getRepository()->find($id);
+
+        if (!$player) {
+            return false;
+        }
+
+        return $player;
+    }
+
+    public function delete($id)
+    {
+        try {
+            $player = $this->get($id);
+            $this->em->remove($player);
+            $this->em->flush();
+        } catch(\Exception $e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected function getRepository()
+    {
+        return $this->em->getRepository("AppBundle:Player");
+    }
 }

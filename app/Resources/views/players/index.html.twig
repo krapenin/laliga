@@ -1,0 +1,10 @@
+{% block body %}
+
+    <span>ID</span>
+    <span>Name</span>
+    {% for player in players   %}
+        <span>{{ player.id }}</span>
+        <span>{{ player.name }}</span>
+    {% endfor %}
+
+{% endblock %}
